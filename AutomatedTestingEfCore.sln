@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingEfCore", "AutomatedTestingEfCore\AutomatedTestingEfCore.csproj", "{4006E829-48C5-46CE-93E4-AD2001533A2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestingEfCore.Tests", "AutomatedTestingEfCore.Tests\AutomatedTestingEfCore.Tests.csproj", "{F4687670-DD34-4351-93D7-249DEBF58E69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4006E829-48C5-46CE-93E4-AD2001533A2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4006E829-48C5-46CE-93E4-AD2001533A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4006E829-48C5-46CE-93E4-AD2001533A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4006E829-48C5-46CE-93E4-AD2001533A2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4687670-DD34-4351-93D7-249DEBF58E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4687670-DD34-4351-93D7-249DEBF58E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4687670-DD34-4351-93D7-249DEBF58E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4687670-DD34-4351-93D7-249DEBF58E69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
