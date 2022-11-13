@@ -8,17 +8,22 @@ namespace AutomatedTestingEfCore.Tests;
 
 public class BloggersControllerShould
 {
+    private readonly BloggerContext _testDbContext;
+    private readonly BloggerContext _setupDbContext;
+
+    public BloggersControllerShould()
+    {
+        var testDbName = Guid.NewGuid().ToString();
+        _testDbContext = CreateInMemoryContext(testDbName);
+        _setupDbContext = CreateInMemoryContext(testDbName);
+    }
+    
     [Fact]
     public async Task BadTestReturnAllPeopleAndTheirBlogposts()
     {
         // Arrange
-        // Create a new DbContext instance
-        var setupDbName = Guid.NewGuid().ToString();
-        var setupDb = CreateInMemoryContext(setupDbName);
-        // Prepare DB test data
-        SetupTestBlogger(setupDb);
-        // var sut = new BloggersController(testDb);
-        var sut = new BloggersController(setupDb);
+        SetupTestBlogger(_setupDbContext);
+        var sut = new BloggersController(_setupDbContext);
         // Act
         IReadOnlyCollection<Person> bloggers = await sut.Get();
         // Assert
@@ -30,15 +35,8 @@ public class BloggersControllerShould
     public async Task GoodTestReturnAllPeopleAndTheirBlogpostss()
     {
         // Arrange
-        // Create a new DbContext instance
-        var testDbName = Guid.NewGuid().ToString();
-        var setupDbName = Guid.NewGuid().ToString();
-        var testDb = CreateInMemoryContext(testDbName);
-        var setupDb = CreateInMemoryContext(setupDbName);
-        // Prepare DB test data
-        SetupTestBlogger(setupDb);
-        // var sut = new BloggersController(testDb);
-        var sut = new BloggersController(testDb);
+        SetupTestBlogger(_setupDbContext);
+        var sut = new BloggersController(_testDbContext);
         // Act
         IReadOnlyCollection<Person> bloggers = await sut.Get();
         // Assert
@@ -46,7 +44,7 @@ public class BloggersControllerShould
         Assert.Equal(2, bloggers.First().BlogPosts?.Count ?? 0);
     }
 
-    private static void SetupTestBlogger(BloggerContext setupDb)
+    private static void SetupTestBlogger(BloggerContext dbContext)
     {
         var person = new Person
         {
@@ -69,8 +67,8 @@ public class BloggersControllerShould
             }
         };
 
-        setupDb.People.Add(person);
-        setupDb.SaveChanges();
+        dbContext.People.Add(person);
+        dbContext.SaveChanges();
     }
 
     private static BloggerContext CreateInMemoryContext(string dbName)
